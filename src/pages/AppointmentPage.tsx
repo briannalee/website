@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Calendar, Clock, Mail } from 'lucide-react';
@@ -18,7 +17,7 @@ export function AppointmentPage() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<AppointmentForm>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = async (data: AppointmentForm) => {
+  const onSubmit = async () => {
     setIsSubmitting(true);
     try {
       // Simulate API call
@@ -27,6 +26,7 @@ export function AppointmentPage() {
       reset();
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
+      console.error('Appointment submission error:', error);
     } finally {
       setIsSubmitting(false);
     }
